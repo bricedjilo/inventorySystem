@@ -106,8 +106,6 @@ public class ModifyPartController implements Initializable {
                 System.err.println("From ModifyPartController, /fxml/mainScreen.fxml cannot be located/loaded.");
             }
         } 
-        stage = (new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml");
-        stage.show();
     }
 
     @FXML
