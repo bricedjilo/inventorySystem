@@ -7,6 +7,7 @@ package view_controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -88,6 +91,21 @@ public class ModifyPartController implements Initializable {
      */
     @FXML
     private void handleCancel(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("You are about to stop this part modification");
+        alert.setContentText("Are you ok with this? \n" +
+            "If you press OK, changes will not be saved.\n");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            try {
+                setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("From ModifyPartController, /fxml/mainScreen.fxml cannot be located/loaded.");
+            }
+        } 
         stage = (new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml");
         stage.show();
     }
@@ -121,6 +139,8 @@ public class ModifyPartController implements Initializable {
         nameField.setText(outsource.getPartName());     
         machineIdCompNameField.setText(outsource.getCompanyName());
     }
+    
+    
     
     @FXML
     private void handleModifyPartSave(ActionEvent event) throws IOException {
