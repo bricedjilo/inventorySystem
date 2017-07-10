@@ -7,6 +7,7 @@ package view_controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -103,7 +107,16 @@ public class MainScreenController implements Initializable {
     private void handleDeletePart() {
         int selectedIdx = partsTable.getSelectionModel().getSelectedIndex();
         if(selectedIdx >= 0) {
-            partsTable.getItems().remove(selectedIdx);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("You are about to delete a part: " + 
+                partsTable.getSelectionModel().getSelectedItem());
+            alert.setContentText("Are you ok with this?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                partsTable.getItems().remove(selectedIdx);
+            } 
         }
     }
     

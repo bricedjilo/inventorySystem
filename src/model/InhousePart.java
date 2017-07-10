@@ -35,7 +35,7 @@ public class InhousePart extends Part {
 
     @Override
     public String toString() {
-        return "InhousePart{" + "machineID=" + machineID + '}';
+        return "Inhouse Part {" + "\nMachine ID = " + getMachineID() + super.toString();
     }
     
     

@@ -113,5 +113,12 @@ public abstract class Part {
     public IntegerProperty maxProperty() {
         return max;
     }
+
+    @Override
+    public String toString() {
+        return  "\nPart ID = " + getPartID() + ", Part Name = " + getPartName() + 
+                ", \nPrice = " + getPrice() + ", Inventory Level = " + getInStock() + 
+                ", \nMin = " + getMin() + ", Max = " + getMax() + " }";
+    }
     
 }
