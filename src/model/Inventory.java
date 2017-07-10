@@ -53,6 +53,8 @@ public class Inventory {
     }
     
     public Part lookupPart(int partID) {
+        ObservableList<Part> parts = Inventory.allParts;
+//        for
         return null;
     }
     
@@ -107,8 +109,6 @@ public class Inventory {
     public static void setIndexToBeUpdated(int indexToBeUpdated) {
         Inventory.indexToBeUpdated = indexToBeUpdated;
     }
-
-    
     
     public static InhousePart getPreviousInhousePart() {
         return previousInhousePart;

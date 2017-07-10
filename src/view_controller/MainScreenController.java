@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +22,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -77,6 +79,9 @@ public class MainScreenController implements Initializable {
     @FXML 
     private TextField searchPartField;
     
+    @FXML 
+    private CheckBox disableAutoSearchBox;
+    
     @FXML
     private TableView<Part> partsTable;
     
@@ -91,6 +96,9 @@ public class MainScreenController implements Initializable {
     
     @FXML
     private TableColumn<Part, Number> priceCostColumn;
+    
+    private ChangeListener<String> partListener;
+
     
     
     @FXML
@@ -110,13 +118,50 @@ public class MainScreenController implements Initializable {
     }
     
     @FXML
+    private void handleSearchCheckBox() {
+        if(disableAutoSearchBox.isSelected()) {
+            System.out.println("------------ Selected");
+            mainPartsSearch.setDisable(false);
+            searchPartField.textProperty().removeListener(partListener);
+        } else {
+            System.out.println("------------ Not Selected ----- " + partListener);
+            FilteredList<Part> filteredParts = new FilteredList<>(Inventory.getAllParts(), query -> true);
+            partListener = ((observable, oldValue, newValue) -> {
+                filteredParts.setPredicate(part -> {
+
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String input = newValue.toLowerCase();
+
+                    return (part.getPartName().toLowerCase().contains(input) || 
+                        part.instockProperty().getValue().toString().contains(input) || 
+                        part.partIdProperty().getValue().toString().contains(input) ||
+                        part.priceProperty().getValue().toString().contains(input));
+                });
+            });
+            searchPartField.textProperty().addListener(partListener);
+            mainPartsSearch.setDisable(true);
+            partsTable.setItems(filteredParts);
+        }
+    }
+    
+    @FXML
     private void handlePartSearch() {
+        FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
+        String query = searchPartField.getText();
         
-//        partNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
-//        partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
-//        invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
-//        priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-//        
+        parts.setPredicate(part -> {
+            System.out.println("=============== " + query);
+            if (query == null || query.isEmpty()) {
+                return true;
+            }
+            return (part.getPartName().toLowerCase().contains(query) || 
+                part.instockProperty().getValue().toString().contains(query) || 
+                part.partIdProperty().getValue().toString().contains(query) ||
+                part.priceProperty().getValue().toString().contains(query));
+        });
+        partsTable.setItems(parts);
     }
     
     @FXML
@@ -153,10 +198,11 @@ public class MainScreenController implements Initializable {
         invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
 
+        mainPartsSearch.setDisable(true);
         
         FilteredList<Part> filteredParts = new FilteredList<>(Inventory.getAllParts(), query -> true);
-        
-        searchPartField.textProperty().addListener((observable, oldValue, newValue) -> {
+
+        partListener = ((observable, oldValue, newValue) -> {
             filteredParts.setPredicate(part -> {
                 
                 if (newValue == null || newValue.isEmpty()) {
@@ -170,9 +216,9 @@ public class MainScreenController implements Initializable {
                     part.priceProperty().getValue().toString().contains(input));
             });
         });
+        searchPartField.textProperty().addListener(partListener);
         partsTable.setItems(filteredParts);
-        
-        
+
     }    
     
 }
