@@ -7,10 +7,11 @@ package view_controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,6 +20,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,7 +29,6 @@ import javafx.scene.text.Text;
 import model.InhousePart;
 import model.Inventory;
 import model.OutsourcedPart;
-import model.Part;
 import util.SceneUtil;
 import validation.InputConstraintException;
 import validation.Validate;
@@ -92,7 +94,22 @@ public class AddPartController implements Initializable {
      */
     @FXML
     private void handleCancel(ActionEvent event) {
-        ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("You are about to stop adding a part");
+        alert.setContentText("Are you ok with this? \n" +
+            "If you press OK, the current part will not be added.\n");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            try {
+                setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("From AddPartController, /fxml/mainScreen.fxml cannot be located/loaded.");
+                //Logger.getLogger(AddPartController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
     }
     
     @FXML
