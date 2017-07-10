@@ -1,6 +1,9 @@
 # Compiled class file
 build/*
 
+#NetBeans IDE config files
+nbproject/*
+
 # Log file
 *.log
 
