@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
@@ -70,6 +74,9 @@ public class MainScreenController implements Initializable {
     @FXML
     private Button mainProductsSearch;
     
+    @FXML 
+    private TextField searchPartField;
+    
     @FXML
     private TableView<Part> partsTable;
     
@@ -100,7 +107,16 @@ public class MainScreenController implements Initializable {
         } else {
             // Display error meesage: You have not added any part. There is nothing to modify
         }
+    }
+    
+    @FXML
+    private void handlePartSearch() {
         
+//        partNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
+//        partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
+//        invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
+//        priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+//        
     }
     
     @FXML
@@ -136,7 +152,27 @@ public class MainScreenController implements Initializable {
         partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
         invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-        partsTable.setItems(Inventory.getAllParts());
+
+        
+        FilteredList<Part> filteredParts = new FilteredList<>(Inventory.getAllParts(), query -> true);
+        
+        searchPartField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredParts.setPredicate(part -> {
+                
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String input = newValue.toLowerCase();
+                
+                return (part.getPartName().toLowerCase().contains(input) || 
+                    part.instockProperty().getValue().toString().contains(input) || 
+                    part.partIdProperty().getValue().toString().contains(input) ||
+                    part.priceProperty().getValue().toString().contains(input));
+            });
+        });
+        partsTable.setItems(filteredParts);
+        
+        
     }    
     
 }
