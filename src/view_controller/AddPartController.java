@@ -107,7 +107,6 @@ public class AddPartController implements Initializable {
                 stage.show();
             } catch (IOException ex) {
                 System.err.println("From AddPartController, /fxml/mainScreen.fxml cannot be located/loaded.");
-                //Logger.getLogger(AddPartController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } 
     }
