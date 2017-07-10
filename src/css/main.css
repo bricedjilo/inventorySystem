@@ -1,0 +1,12 @@
+/* 
+    Created on : Jul 8, 2017, 8:16:31 PM
+    Author     : Pat
+*/
+
+.invalidInput {
+    -fx-border-color: red;
+}
+
+.validInput {
+    -fx-border-color: green;
+}
