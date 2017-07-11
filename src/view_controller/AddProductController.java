@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -42,6 +43,21 @@ public class AddProductController implements Initializable {
 
     @FXML
     private Button addProductDelete;
+    
+    @FXML
+    private TextField productNameField;
+    
+    @FXML
+    private TextField productInStockField;
+    
+    @FXML
+    private TextField productPriceField;
+    
+    @FXML
+    private TextField productMaxField;
+    
+    @FXML
+    private TextField productMinField;
     
 
     /**
