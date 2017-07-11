@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -102,16 +104,24 @@ public class MainScreenController implements Initializable {
     
     //------------- Part Actions ----------------//
     @FXML
-    private void handleMainAddPartsAction(ActionEvent event) throws IOException {
-        stage = (new SceneUtil()).changeScene(event, "/fxml/addPart.fxml");
-        stage.show();
+    private void handleMainAddPartsAction(ActionEvent event) {
+        try {
+            stage = (new SceneUtil()).changeScene(event, "/fxml/addPart.fxml");
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println("Unable to load /fxml/addPart.fxml. Please make sure the path is correct.");
+        }
     }
     
     @FXML
-    private void handleMainModifyPartsAction(ActionEvent event) throws IOException {
+    private void handleMainModifyPartsAction(ActionEvent event) {
         if(Inventory.getAllParts().size() > 0) {
-            stage = (new SceneUtil()).changeScene(event, "/fxml/modifyPart.fxml");
-            stage.show();
+            try {
+                stage = (new SceneUtil()).changeScene(event, "/fxml/modifyPart.fxml");
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("Unable to load /fxml/modifyPart.fxml. Please make sure the path is correct.");
+            }
         } else {
             // Display error meesage: You have not added any part. There is nothing to modify
         }
@@ -120,11 +130,9 @@ public class MainScreenController implements Initializable {
     @FXML
     private void handleSearchCheckBox() {
         if(disableAutoSearchBox.isSelected()) {
-            System.out.println("------------ Selected");
             mainPartsSearch.setDisable(false);
             searchPartField.textProperty().removeListener(partListener);
         } else {
-            System.out.println("------------ Not Selected ----- " + partListener);
             FilteredList<Part> filteredParts = new FilteredList<>(Inventory.getAllParts(), query -> true);
             partListener = ((observable, oldValue, newValue) -> {
                 filteredParts.setPredicate(part -> {
@@ -152,7 +160,6 @@ public class MainScreenController implements Initializable {
         String query = searchPartField.getText();
         
         parts.setPredicate(part -> {
-            System.out.println("=============== " + query);
             if (query == null || query.isEmpty()) {
                 return true;
             }
@@ -185,6 +192,7 @@ public class MainScreenController implements Initializable {
     private void handleMainExit(ActionEvent event) {
         ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
     }
+    
     
     //------------- Product Actions ----------------//
     
