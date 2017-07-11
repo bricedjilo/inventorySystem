@@ -196,6 +196,27 @@ public class MainScreenController implements Initializable {
     
     //------------- Product Actions ----------------//
     
+    @FXML
+    private void handleAddProduct (ActionEvent event) {
+        try {
+            stage = (new SceneUtil()).changeScene(event, "/fxml/addProduct.fxml");
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println("Unable to load /fxml/addPart.fxml. Please make sure the path is correct.");
+        }
+    }
+    
+    @FXML
+    private void handleModifyProduct (ActionEvent event) {
+        try {
+            stage = (new SceneUtil()).changeScene(event, "/fxml/modifyProduct.fxml");
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println("Unable to load /fxml/modifyProduct.fxml. Please make sure the path is correct.");
+        }
+    }
+    
+    
     public MainScreenController() { }
     
     /**
