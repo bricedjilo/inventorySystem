@@ -100,7 +100,7 @@ public class MainScreenController implements Initializable {
     private ChangeListener<String> partListener;
 
     
-    
+    //------------- Part Actions ----------------//
     @FXML
     private void handleMainAddPartsAction(ActionEvent event) throws IOException {
         stage = (new SceneUtil()).changeScene(event, "/fxml/addPart.fxml");
@@ -185,6 +185,8 @@ public class MainScreenController implements Initializable {
     private void handleMainExit(ActionEvent event) {
         ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
     }
+    
+    //------------- Product Actions ----------------//
     
     public MainScreenController() { }
     
