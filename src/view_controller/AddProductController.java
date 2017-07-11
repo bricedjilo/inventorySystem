@@ -5,13 +5,25 @@
  */
 package view_controller;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.transformation.FilteredList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import model.Inventory;
+import model.Part;
+import util.SceneUtil;
 
 /**
  * FXML Controller class
@@ -28,21 +40,36 @@ public class AddProductController implements Initializable {
 
     @FXML
     private AnchorPane addProduct;
-
+    
     @FXML
-    private Button addProductSearch;
-
+    private Button addPartToProductButton;
+    
     @FXML
-    private Button addProductAdd;
-
+    private Button saveNewProductButton;
+    
+    @FXML 
+    private Button deletePartButton;
+    
     @FXML
-    private Button addProductSave;
-
+    private Button searchPartButton;
+    
     @FXML
-    private Button addProductCancel;
-
+    private TableView<Part> searchPartForProductTable;
+    
+     @FXML
+    private TableColumn<Part, Number> partIdColumn;
+    
     @FXML
-    private Button addProductDelete;
+    private TableColumn<Part, String> partNameColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> invLevelColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> priceCostColumn;
+    
+    @FXML
+    private TextField searchPartField;
     
     @FXML
     private TextField productNameField;
@@ -59,13 +86,69 @@ public class AddProductController implements Initializable {
     @FXML
     private TextField productMinField;
     
+    private Stage stage;
+    
+    
+    @FXML
+    private void handleCancelProductAdd(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("You are about to stop adding a product");
+        alert.setContentText("Are you ok with this? \n" +
+            "If you press OK, entered information will not be saved.\n");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            try {
+                stage = ((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
+                stage.show();
+            } catch (IOException ex) {
+                System.err.println("From AddProductController, /fxml/mainScreen.fxml cannot be located/loaded.");
+            }
+        } 
+    }
+    
+    @FXML
+    private void handleSearchPartAdd(ActionEvent event) {
+        FilteredList<Part> parts = new FilteredList<>(Inventory.getAllParts(), pre -> true);
+        String query = searchPartField.getText();
+        
+        parts.setPredicate(part -> {
+            if (query == null || query.isEmpty()) {
+                return true;
+            }
+            return (part.getPartName().toLowerCase().contains(query) || 
+                part.instockProperty().getValue().toString().contains(query) || 
+                part.partIdProperty().getValue().toString().contains(query) ||
+                part.priceProperty().getValue().toString().contains(query));
+        });
+        if(parts.size() > 0) {
+            addPartToProductButton.setDisable(false);
+        } else {
+            addPartToProductButton.setDisable(true);
+        }
+        searchPartForProductTable.setItems(parts);
+    }
+    
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        partNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
+        partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
+        invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
+        priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        
+        // Disable Add, Delete, and Save if the product has not been created
+        addPartToProductButton.setDisable(true);
+        saveNewProductButton.setDisable(true);
+        deletePartButton.setDisable(true);
     }    
+
+    
     
 }

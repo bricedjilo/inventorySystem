@@ -96,7 +96,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <TextField editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Auto Generated - Disabled" style="-fx-background-color: inherit; -fx-border-color: grey; -fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <TextField editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" style="-fx-background-color: inherit; -fx-border-color: grey; -fx-font-style: italic;" text="Auto Generated - Disabled" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
@@ -128,10 +128,10 @@
             </Text>
             <TableView fx:id="searchPartForProductTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="477.0" GridPane.columnIndex="12" GridPane.rowIndex="7">
               <columns>
-                <TableColumn prefWidth="116.0" text="Part ID" />
-                <TableColumn prefWidth="106.0" text="Part Name" />
-                  <TableColumn prefWidth="123.0" text="Inventory Level" />
-                  <TableColumn prefWidth="119.0" text="Price per Unit" />
+                <TableColumn fx:id="partIdColumn" prefWidth="116.0" text="Part ID" />
+                <TableColumn fx:id="partNameColumn" prefWidth="106.0" text="Part Name" />
+                  <TableColumn fx:id="invLevelColumn" prefWidth="123.0" text="Inventory Level" />
+                  <TableColumn fx:id="priceCostColumn" prefWidth="119.0" text="Price per Unit" />
               </columns>
             </TableView>
             <TableView fx:id="productPartsTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="476.0" GridPane.columnIndex="12" GridPane.rowIndex="16">
@@ -143,7 +143,7 @@
                </columns>
             </TableView>
             <TextField fx:id="searchPartField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="252.0" GridPane.columnIndex="20" GridPane.rowIndex="3" />
-            <Button fx:id="searchPartButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Search" GridPane.columnIndex="16" GridPane.rowIndex="3">
+            <Button fx:id="searchPartButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearchPartAdd" prefHeight="25.0" prefWidth="103.0" text="Search" GridPane.columnIndex="16" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -161,7 +161,7 @@
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="cancelAddProductButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Cancel" GridPane.columnIndex="25" GridPane.rowIndex="23">
+            <Button fx:id="cancelAddProductButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCancelProductAdd" prefHeight="31.0" prefWidth="100.0" text="Cancel" GridPane.columnIndex="25" GridPane.rowIndex="23">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
