@@ -11,7 +11,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.regex.PatternSyntaxException;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -117,7 +116,7 @@ public class AddProductController implements Initializable {
     
     private Stage stage;
     
-    private int productId = 0;
+    private int productId = 1;
     
     private ObservableList<Part> addedParts = FXCollections.observableArrayList();
     private Scene scene;
@@ -262,8 +261,13 @@ public class AddProductController implements Initializable {
                 Integer.parseInt(productMinField.getText()), 
                 Integer.parseInt(productMinField.getText()))
             );
+            
+            System.out.println("I am here 1");
+            
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();
+            
+            System.out.println("I am here 2");
             
         } catch (IOException io) {
             errorSaveProductField.setText(io.getMessage());

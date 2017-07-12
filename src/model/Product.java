@@ -22,20 +22,20 @@ public class Product {
     
     private ObservableList<Part> associatedParts;// = observableArrayList();
     private final IntegerProperty productID;
-    private final StringProperty name;
-    private final DoubleProperty price;
-    private final IntegerProperty inStock;
+    private final StringProperty productName;
+    private final DoubleProperty productPrice;
+    private final IntegerProperty productInStock;
     private final IntegerProperty min;
     private final IntegerProperty max;
 
-    public Product(ObservableList<Part> associatedParts, int productID, String name, 
-        double price, int inStock, int min, int max) {
+    public Product(ObservableList<Part> associatedParts, int productID, String productName, 
+        double productPrice, int productInStock, int min, int max) {
         
         this.associatedParts = associatedParts;
         this.productID = new SimpleIntegerProperty(productID);
-        this.name = new SimpleStringProperty(name);
-        this.price = new SimpleDoubleProperty(price);
-        this.inStock = new SimpleIntegerProperty(inStock);
+        this.productName = new SimpleStringProperty(productName);
+        this.productPrice = new SimpleDoubleProperty(productPrice);
+        this.productInStock = new SimpleIntegerProperty(productInStock);
         this.min = new SimpleIntegerProperty(min);
         this.max = new SimpleIntegerProperty(max);
     }
@@ -60,40 +60,40 @@ public class Product {
         return productID;
     }
 
-    public String getName() {
-        return name.get();
+    public String getProductName() {
+        return productName.get();
     }
 
-    public void setName(String name) {
-        this.name.set(name);
+    public void setProductName(String productName) {
+        this.productName.set(productName);
     }
 
-    public double getPrice() {
-        return price.get();
+    public StringProperty productNameProperty() {
+        return productName;
     }
     
-    public void setPrice(double price) {
-        this.price.set(price);
+    public double getProductPrice() {
+        return productPrice.get();
     }
     
-    public DoubleProperty priceProperty() {
-        return price;
+    public void setProductPrice(double productPrice) {
+        this.productPrice.set(productPrice);
     }
     
-    public StringProperty nameProperty() {
-        return name;
+    public DoubleProperty productPriceProperty() {
+        return productPrice;
     }
     
-    public int getInStock() {
-        return inStock.get();
+    public int getProductInStock() {
+        return productInStock.get();
     }
 
-    public void setInStock(int inStock) {
-        this.inStock.set(inStock);
+    public void setProductInStock(int productInStock) {
+        this.productInStock.set(productInStock);
     }
 
-    public IntegerProperty inStockProperty() {
-        return inStock;
+    public IntegerProperty productInStockProperty() {
+        return productInStock;
     }
     
     public int getMin() {

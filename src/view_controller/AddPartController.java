@@ -43,7 +43,7 @@ public class AddPartController implements Initializable {
     private Stage stage;
     private Scene scene;
     
-    private int id = 5;
+    private int id = 4;
     
     @FXML
     private ResourceBundle resources;
@@ -149,7 +149,7 @@ public class AddPartController implements Initializable {
                 Validate.isPositiveInt(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
                 Inventory.setPreviousInhousePart(new InhousePart(
-                    Integer.parseInt(machineIdCompNameField.getText()), ++id, 
+                    Integer.parseInt(machineIdCompNameField.getText()), (id+1), 
                     nameField.getText(), Double.parseDouble(priceCostField.getText()), 
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
@@ -159,7 +159,7 @@ public class AddPartController implements Initializable {
             } else {
                 Validate.isAlphaNumeric(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
-                Inventory.setPreviousOutsourcedPart(new OutsourcedPart(machineIdCompNameField.getText(), ++id, 
+                Inventory.setPreviousOutsourcedPart(new OutsourcedPart(machineIdCompNameField.getText(), (id+1), 
                     nameField.getText(), Double.parseDouble(priceCostField.getText()), 
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
