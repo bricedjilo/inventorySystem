@@ -173,7 +173,24 @@ public class AddProductController implements Initializable {
         
     }
     
-
+    @FXML
+    private void handleDeletePart(ActionEvent event) {
+        
+        Part partToBeDeleted = productPartsTable.getSelectionModel().getSelectedItem();
+        System.out.println(partToBeDeleted);
+        
+        addedParts.remove(partToBeDeleted);
+        
+        if(addedParts.size() > 0) {
+            deletePartButton.setDisable(false);
+            saveNewProductButton.setDisable(false);
+        } else {
+            deletePartButton.setDisable(true);
+            saveNewProductButton.setDisable(true);
+        }
+    }
+    
+    
     /**
      * Initializes the controller class.
      */
