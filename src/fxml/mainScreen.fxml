@@ -95,12 +95,12 @@
                   <Font size="19.0" />
                </font>
             </Text>
-            <Button fx:id="mainPartsSearch" onAction="#handlePartSearch" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" text="Search" GridPane.columnIndex="11">
+            <Button fx:id="mainPartsSearch" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePartSearch" prefHeight="35.0" prefWidth="86.0" text="Search" GridPane.columnIndex="11">
                <padding>
                   <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
                </padding>
             </Button>
-            <CheckBox fx:id="disableAutoSearchBox" onAction="#handleSearchCheckBox"  selected="false"  minWidth="-Infinity" mnemonicParsing="false" prefHeight="17.0" prefWidth="145.0" text="Disable Auto Search" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <CheckBox fx:id="disableAutoSearchBox" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearchCheckBox" prefHeight="17.0" prefWidth="145.0" selected="false" text="Disable Auto Search" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button fx:id="mainExit" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" layoutX="994.0" layoutY="396.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleMainExit" prefHeight="27.0" prefWidth="85.0" text="Exit">
@@ -157,12 +157,12 @@
                   <Insets />
                </GridPane.margin>
             </TextField>
-            <TableView minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="475.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TableView fx:id="productsTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="475.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <columns>
-                  <TableColumn prefWidth="105.0" text="Product ID" />
-                  <TableColumn prefWidth="118.0" text="Product Name" />
-                  <TableColumn prefWidth="119.0" text="Inventory Level" />
-                  <TableColumn prefWidth="131.0" text="Price per Unit" />
+                  <TableColumn fx:id="productIdColumn" prefWidth="105.0" text="Product ID" />
+                  <TableColumn fx:id="productNameColumn" prefWidth="118.0" text="Product Name" />
+                  <TableColumn fx:id="productInvLevelColumn" prefWidth="119.0" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceColumn" prefWidth="131.0" text="Price per Unit" />
                </columns>
                <GridPane.margin>
                   <Insets />
@@ -173,12 +173,12 @@
                   <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                </padding>
             </Button>
-            <Button fx:id="mainProductsModify" onAction="#handleModifyProduct" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="37.0" prefWidth="103.0" text="Modify" GridPane.columnIndex="17" GridPane.rowIndex="2">
+            <Button fx:id="mainProductsModify" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleModifyProduct" prefHeight="37.0" prefWidth="103.0" text="Modify" GridPane.columnIndex="17" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                </padding>
             </Button>
-            <Button fx:id="mainProductsAdd" onAction="#handleAddProduct"  alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Add" GridPane.columnIndex="11" GridPane.rowIndex="2">
+            <Button fx:id="mainProductsAdd" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAddProduct" prefHeight="27.0" prefWidth="85.0" text="Add" GridPane.columnIndex="11" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="25.0" right="20.0" top="10.0" />
                </padding>
