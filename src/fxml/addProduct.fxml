@@ -102,7 +102,7 @@
                </font>
             </TextField>
             <TextField fx:id="productNameField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Product Name" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <TextField fx:id="productInStockField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Inv" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <TextField fx:id="productInStockField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Inv" text="0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
             <TextField fx:id="productPriceField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Price" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="11" />
             <TextField fx:id="productMaxField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Max" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="13" />
             <TextField fx:id="productMinField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Min" style="-fx-font-style: italic;" GridPane.columnIndex="8" GridPane.rowIndex="13" />
@@ -156,7 +156,7 @@
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="saveNewProductButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Save" GridPane.columnIndex="21" GridPane.rowIndex="23">
+            <Button fx:id="saveNewProductButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSaveNewProduct" prefHeight="31.0" prefWidth="100.0" text="Save" GridPane.columnIndex="21" GridPane.rowIndex="23">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
@@ -166,7 +166,7 @@
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="deletePartButton" onAction="#handleDeletePart"  minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="25" GridPane.rowIndex="20">
+            <Button fx:id="deletePartButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDeletePart" prefHeight="31.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="25" GridPane.rowIndex="20">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>

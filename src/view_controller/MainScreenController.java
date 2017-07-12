@@ -99,6 +99,21 @@ public class MainScreenController implements Initializable {
     @FXML
     private TableColumn<Part, Number> priceCostColumn;
     
+    @FXML
+    private TableView<Part> productsTable;
+    
+    @FXML
+    private TableColumn<Part, Number> productIdColumn;
+    
+    @FXML
+    private TableColumn<Part, String> productNameColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> productInvLevelColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> productPriceColumn;
+    
     private ChangeListener<String> partListener;
 
     
