@@ -96,16 +96,16 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <TextField editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Auto Generated - Disabled" style="-fx-background-color: inherit; -fx-border-color: grey; -fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+            <TextField editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" style="-fx-background-color: inherit; -fx-border-color: grey; -fx-font-style: italic;" text="Auto Generated - Disabled" GridPane.columnIndex="3" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Product Name" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Inv" GridPane.columnIndex="3" GridPane.rowIndex="9" />
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Price" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="11" />
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Max" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="13" />
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Min" style="-fx-font-style: italic;" GridPane.columnIndex="8" GridPane.rowIndex="13" />
+            <TextField fx:id="productNameField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Product Name" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <TextField fx:id="productInStockField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Inv" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <TextField fx:id="productPriceField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Price" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+            <TextField fx:id="productMaxField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Max" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+            <TextField fx:id="productMinField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Min" style="-fx-font-style: italic;" GridPane.columnIndex="8" GridPane.rowIndex="13" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" GridPane.columnIndex="6" GridPane.rowIndex="13">
                <font>
                   <Font size="15.0" />
@@ -126,24 +126,24 @@
                   <Font size="15.0" />
                </font>
             </Text>
-            <TableView minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="477.0" GridPane.columnIndex="12" GridPane.rowIndex="7">
+            <TableView fx:id="searchPartForProductTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="477.0" GridPane.columnIndex="12" GridPane.rowIndex="7">
               <columns>
-                <TableColumn prefWidth="116.0" text="Part ID" />
-                <TableColumn prefWidth="106.0" text="Part Name" />
-                  <TableColumn prefWidth="123.0" text="Inventory Level" />
-                  <TableColumn prefWidth="119.0" text="Price per Unit" />
+                <TableColumn fx:id="partIdColumn" prefWidth="116.0" text="Part ID" />
+                <TableColumn fx:id="partNameColumn" prefWidth="106.0" text="Part Name" />
+                  <TableColumn fx:id="invLevelColumn" prefWidth="123.0" text="Inventory Level" />
+                  <TableColumn fx:id="priceCostColumn" prefWidth="119.0" text="Price per Unit" />
               </columns>
             </TableView>
-            <TableView minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="476.0" GridPane.columnIndex="12" GridPane.rowIndex="16">
+            <TableView fx:id="productPartsTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="476.0" GridPane.columnIndex="12" GridPane.rowIndex="16">
                <columns>
-                  <TableColumn prefWidth="116.0" text="Part ID" />
-                  <TableColumn prefWidth="121.0" text="Part Name" />
-                  <TableColumn prefWidth="113.0" text="Inventory Level" />
-                  <TableColumn prefWidth="112.0" text="Price per Unit" />
+                  <TableColumn fx:id="addedPartIdColumn" prefWidth="116.0" text="Part ID" />
+                  <TableColumn fx:id="addedPartNameColumn" prefWidth="121.0" text="Part Name" />
+                  <TableColumn fx:id="addedInvLevelColumn" prefWidth="113.0" text="Inventory Level" />
+                  <TableColumn fx:id="addedPriceCostColumn" prefWidth="112.0" text="Price per Unit" />
                </columns>
             </TableView>
-            <TextField maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="252.0" GridPane.columnIndex="20" GridPane.rowIndex="3" />
-            <Button fx:id="addProductSearch" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="103.0" text="Search" GridPane.columnIndex="16" GridPane.rowIndex="3">
+            <TextField fx:id="searchPartField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="252.0" GridPane.columnIndex="20" GridPane.rowIndex="3" />
+            <Button fx:id="searchPartButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleSearchPartAdd" prefHeight="25.0" prefWidth="103.0" text="Search" GridPane.columnIndex="16" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -151,26 +151,31 @@
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="addProductAdd" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Add" GridPane.columnIndex="25" GridPane.rowIndex="11">
+            <Button fx:id="addPartToProductButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAddPartToProduct" prefHeight="31.0" prefWidth="100.0" text="Add" GridPane.columnIndex="25" GridPane.rowIndex="11">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="addProductSave" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Save" GridPane.columnIndex="21" GridPane.rowIndex="23">
+            <Button fx:id="saveNewProductButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Save" GridPane.columnIndex="21" GridPane.rowIndex="23">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="addProductCancel" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Cancel" GridPane.columnIndex="25" GridPane.rowIndex="23">
+            <Button fx:id="cancelAddProductButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleCancelProductAdd" prefHeight="31.0" prefWidth="100.0" text="Cancel" GridPane.columnIndex="25" GridPane.rowIndex="23">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="addProductDelete" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="25" GridPane.rowIndex="20">
+            <Button fx:id="deletePartButton" onAction="#handleDeletePart"  minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Delete" GridPane.columnIndex="25" GridPane.rowIndex="20">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
+            <Text fx:id="errorSaveProductField" fill="#c61616" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="533.0" GridPane.columnIndex="10" GridPane.rowIndex="1">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
          </children>
       </GridPane>
    </children>
