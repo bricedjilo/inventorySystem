@@ -55,7 +55,7 @@ public class Validate {
     
     public static boolean isNotLessThan(String val1, String fieldName1, String fieldID1, 
             String val2, String fieldName2, String fieldID2) {
-        if(Integer.parseInt(val1) < Integer.parseInt(val2)) {
+        if(Double.parseDouble(val1)*100 < Double.parseDouble(val2)*100) {
            throw new InputConstraintException(
                 fieldName2 + " must be less than " + fieldName1 + 
                     " - " + fieldID1 + " - " + fieldID2);

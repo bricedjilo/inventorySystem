@@ -32,5 +32,10 @@ public class OutsourcedPart extends Part {
     public StringProperty companyNameProperty() {
         return companyName;
     }
+
+    @Override
+    public String toString() {
+        return "Outsourced Part {" + "\nCompany Name = " + getCompanyName()+ super.toString();
+    }
     
 }
