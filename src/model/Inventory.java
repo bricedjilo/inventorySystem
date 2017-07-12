@@ -28,8 +28,8 @@ public class Inventory {
         
     }
     
-    public void addProduct(Product product) {
-        
+    public static void addProduct(Product product) {
+        Inventory.products.add(product);
     }
     
     public boolean removeProduct(int productID ) {
@@ -63,11 +63,11 @@ public class Inventory {
     }
     
     public static ObservableList getProducts() {
-        return products;
+        return Inventory.products;
     }
 
     public static ObservableList getAllParts() {
-        return allParts;
+        return Inventory.allParts;
     }
 
     public static int getPreviousOutsourcedPartIndex() {
