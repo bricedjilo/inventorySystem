@@ -15,15 +15,22 @@ import model.OutsourcedPart;
  */
 public class InventoryService {
     
+    private static int partID = 0;
+    
     public void createDefaultParts() {
-        Inventory.addPart(new InhousePart(423389, 1, "Transistor", 5.0, 100, 5, 500));
-        Inventory.setPreviousInhousePart(new InhousePart(223389, 2, "Capacitor", 10.0, 150, 15, 450));
+        Inventory.addPart(new InhousePart(423389, getNextPartID(), "Transistor", 5.0, 100, 5, 500));
+        Inventory.setPreviousInhousePart(new InhousePart(223389, getNextPartID(), "Capacitor", 10.0, 150, 15, 450));
         Inventory.addPart(Inventory.getPreviousInhousePart());
         Inventory.setPreviousInhousePartIndex(Inventory.getAllParts().size()-1);
-        Inventory.addPart(new OutsourcedPart("Songo Tech" , 3, "Resistance", 6.0, 380, 15, 56));
-        Inventory.setPreviousOutsourcedPart(new OutsourcedPart("Songo Tech", 4, "Nor Gate", 2.0, 40, 3, 200));
+        Inventory.addPart(new OutsourcedPart("Songo Tech" , getNextPartID(), "Resistance", 6.0, 380, 15, 56));
+        Inventory.setPreviousOutsourcedPart(new OutsourcedPart("Songo Tech", getNextPartID(), "Nor Gate", 2.0, 40, 3, 200));
         Inventory.addPart(Inventory.getPreviousOutsourcedPart());
         Inventory.setPreviousOutsourcedPartIndex(Inventory.getAllParts().size()-1);
     }
+
+    public static int getNextPartID() {
+        return ++partID;
+    }
+
     
 }
