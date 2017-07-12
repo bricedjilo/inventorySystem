@@ -136,10 +136,10 @@
             </TableView>
             <TableView fx:id="productPartsTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="115.0" prefWidth="476.0" GridPane.columnIndex="12" GridPane.rowIndex="16">
                <columns>
-                  <TableColumn prefWidth="116.0" text="Part ID" />
-                  <TableColumn prefWidth="121.0" text="Part Name" />
-                  <TableColumn prefWidth="113.0" text="Inventory Level" />
-                  <TableColumn prefWidth="112.0" text="Price per Unit" />
+                  <TableColumn fx:id="addedPartIdColumn" prefWidth="116.0" text="Part ID" />
+                  <TableColumn fx:id="addedPartNameColumn" prefWidth="121.0" text="Part Name" />
+                  <TableColumn fx:id="addedInvLevelColumn" prefWidth="113.0" text="Inventory Level" />
+                  <TableColumn fx:id="addedPriceCostColumn" prefWidth="112.0" text="Price per Unit" />
                </columns>
             </TableView>
             <TextField fx:id="searchPartField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="252.0" GridPane.columnIndex="20" GridPane.rowIndex="3" />
@@ -151,7 +151,7 @@
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>
             </Button>
-            <Button fx:id="addPartToProductButton" minWidth="-Infinity" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Add" GridPane.columnIndex="25" GridPane.rowIndex="11">
+            <Button fx:id="addPartToProductButton" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleAddPartToProduct" prefHeight="31.0" prefWidth="100.0" text="Add" GridPane.columnIndex="25" GridPane.rowIndex="11">
                <padding>
                   <Insets bottom="7.0" left="25.0" right="25.0" top="7.0" />
                </padding>

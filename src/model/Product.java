@@ -9,8 +9,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import static javafx.collections.FXCollections.observableArrayList;
-import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  *
@@ -18,14 +17,14 @@ import javafx.collections.ObservableList;
  */
 public class Product {
     
-    private ObservableList<Part> associatedParts;// = observableArrayList();
+    private FilteredList<Part> associatedParts;// = observableArrayList();
     private final IntegerProperty productID;
     private final StringProperty name;
     private final IntegerProperty inStock;
     private final IntegerProperty min;
     private final IntegerProperty max;
 
-    public Product(ObservableList<Part> associatedParts, int productID, String name, int inStock, int min, int max) {
+    public Product(FilteredList<Part> associatedParts, int productID, String name, int inStock, int min, int max) {
         this.associatedParts = associatedParts;
         this.productID = new SimpleIntegerProperty(productID);
         this.name = new SimpleStringProperty(name);
@@ -34,7 +33,7 @@ public class Product {
         this.max = new SimpleIntegerProperty(max);
     }
 
-    public ObservableList<Part> getAssociatedParts() {
+    public FilteredList<Part> getAssociatedParts() {
         return associatedParts;
     }
 
@@ -111,7 +110,11 @@ public class Product {
     }
     
     public Part lookupAssociatedPart(int partID) {
-        return associatedParts.get(partID);
+        FilteredList<Part> parts = new FilteredList<>(associatedParts, pre -> true);
+        parts.setPredicate(part -> {
+            return part.getPartID() == partID;
+        });
+        return (parts.size() > 0)? parts.get(0) : null;
     }
     
 }

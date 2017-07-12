@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,8 +58,8 @@ public class AddProductController implements Initializable {
     
     @FXML
     private TableView<Part> searchPartForProductTable;
-    
-     @FXML
+
+    @FXML
     private TableColumn<Part, Number> partIdColumn;
     
     @FXML
@@ -68,6 +71,23 @@ public class AddProductController implements Initializable {
     @FXML
     private TableColumn<Part, Number> priceCostColumn;
     
+    @FXML
+    private TableView<Part> productPartsTable;
+    
+    @FXML
+    private TableColumn<Part, Number> addedPartIdColumn;
+    
+    @FXML
+    private TableColumn<Part, String> addedPartNameColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> addedInvLevelColumn;
+    
+    @FXML
+    private TableColumn<Part, Number> addedPriceCostColumn;
+    
+    
+
     @FXML
     private TextField searchPartField;
     
@@ -87,6 +107,8 @@ public class AddProductController implements Initializable {
     private TextField productMinField;
     
     private Stage stage;
+    
+    private ObservableList<Part> addedParts = FXCollections.observableArrayList();
     
     
     @FXML
@@ -130,6 +152,26 @@ public class AddProductController implements Initializable {
         searchPartForProductTable.setItems(parts);
     }
     
+    @FXML
+    private void handleAddPartToProduct(ActionEvent event) {
+        
+        addedParts.addAll(searchPartForProductTable.getItems().filtered(part-> {
+            if(addedParts.isEmpty()) return true;
+            return addedParts.filtered(addedPart -> {
+                return addedPart.getPartID() == part.getPartID();
+            }).size() != 1;
+        }));
+        
+        if(addedParts.size() > 0) {
+            deletePartButton.setDisable(false);
+            saveNewProductButton.setDisable(false);
+        } else {
+            deletePartButton.setDisable(true);
+            saveNewProductButton.setDisable(true);
+        }
+        productPartsTable.setItems(addedParts);
+        
+    }
     
 
     /**
@@ -142,6 +184,12 @@ public class AddProductController implements Initializable {
         partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
         invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        
+        addedPartNameColumn.setCellValueFactory(cellData -> cellData.getValue().partNameProperty());
+        addedPartIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
+        addedInvLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
+        addedPriceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+              
         
         // Disable Add, Delete, and Save if the product has not been created
         addPartToProductButton.setDisable(true);
