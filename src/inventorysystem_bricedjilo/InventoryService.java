@@ -16,6 +16,7 @@ import model.OutsourcedPart;
 public class InventoryService {
     
     private static int partID = 0;
+    private static int productID = 0;
     
     public void createDefaultParts() {
         Inventory.addPart(new InhousePart(423389, getNextPartID(), "Transistor", 5.0, 100, 5, 500));
@@ -31,6 +32,16 @@ public class InventoryService {
     public static int getNextPartID() {
         return ++partID;
     }
-
     
+    public static int getCurrentPartID() {
+        return partID;
+    }
+
+    public static int getNextProductID() {
+        return ++productID;
+    }
+    
+    public static int getCurrentProductID() {
+        return productID;
+    }
 }
