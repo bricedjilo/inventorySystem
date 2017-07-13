@@ -5,10 +5,13 @@
  */
 package model;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
 /**
@@ -17,29 +20,33 @@ import javafx.collections.transformation.FilteredList;
  */
 public class Product {
     
-    private FilteredList<Part> associatedParts;// = observableArrayList();
+    private ObservableList<Part> associatedParts;// = observableArrayList();
     private final IntegerProperty productID;
-    private final StringProperty name;
-    private final IntegerProperty inStock;
+    private final StringProperty productName;
+    private final DoubleProperty productPrice;
+    private final IntegerProperty productInStock;
     private final IntegerProperty min;
     private final IntegerProperty max;
 
-    public Product(FilteredList<Part> associatedParts, int productID, String name, int inStock, int min, int max) {
+    public Product(ObservableList<Part> associatedParts, int productID, String productName, 
+        double productPrice, int productInStock, int min, int max) {
+        
         this.associatedParts = associatedParts;
         this.productID = new SimpleIntegerProperty(productID);
-        this.name = new SimpleStringProperty(name);
-        this.inStock = new SimpleIntegerProperty(inStock);
+        this.productName = new SimpleStringProperty(productName);
+        this.productPrice = new SimpleDoubleProperty(productPrice);
+        this.productInStock = new SimpleIntegerProperty(productInStock);
         this.min = new SimpleIntegerProperty(min);
         this.max = new SimpleIntegerProperty(max);
     }
 
-    public FilteredList<Part> getAssociatedParts() {
+    public ObservableList<Part> getAssociatedParts() {
         return associatedParts;
     }
 
-//    public void setAssociatedParts(ArrayList<Part> associatedParts) {
-//        this.associatedParts = associatedParts;
-//    }
+    public void setAssociatedParts(FilteredList<Part> associatedParts) {
+        this.associatedParts = associatedParts;
+    }
 
     public int getProductID() {
         return productID.get();
@@ -53,28 +60,40 @@ public class Product {
         return productID;
     }
 
-    public String getName() {
-        return name.get();
+    public String getProductName() {
+        return productName.get();
     }
 
-    public void setName(String name) {
-        this.name.set(name);
+    public void setProductName(String productName) {
+        this.productName.set(productName);
     }
 
-    public StringProperty nameProperty() {
-        return name;
+    public StringProperty productNameProperty() {
+        return productName;
     }
     
-    public int getInStock() {
-        return inStock.get();
+    public double getProductPrice() {
+        return productPrice.get();
+    }
+    
+    public void setProductPrice(double productPrice) {
+        this.productPrice.set(productPrice);
+    }
+    
+    public DoubleProperty productPriceProperty() {
+        return productPrice;
+    }
+    
+    public int getProductInStock() {
+        return productInStock.get();
     }
 
-    public void setInStock(int inStock) {
-        this.inStock.set(inStock);
+    public void setProductInStock(int productInStock) {
+        this.productInStock.set(productInStock);
     }
 
-    public IntegerProperty inStockProperty() {
-        return inStock;
+    public IntegerProperty productInStockProperty() {
+        return productInStock;
     }
     
     public int getMin() {

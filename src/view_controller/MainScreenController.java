@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
+import model.Product;
 import util.SceneUtil;
 
 /**
@@ -98,6 +99,21 @@ public class MainScreenController implements Initializable {
     
     @FXML
     private TableColumn<Part, Number> priceCostColumn;
+    
+    @FXML
+    private TableView<Product> productsTable;
+    
+    @FXML
+    private TableColumn<Product, Number> productIdColumn;
+    
+    @FXML
+    private TableColumn<Product, String> productNameColumn;
+    
+    @FXML
+    private TableColumn<Product, Number> productInvLevelColumn;
+    
+    @FXML
+    private TableColumn<Product, Number> productPriceColumn;
     
     private ChangeListener<String> partListener;
 
@@ -228,6 +244,11 @@ public class MainScreenController implements Initializable {
         partIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
         invLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         priceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        
+        productNameColumn.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
+        productIdColumn.setCellValueFactory(cellData -> cellData.getValue().productIdProperty());
+        productInvLevelColumn.setCellValueFactory(cellData -> cellData.getValue().productInStockProperty());
+        productPriceColumn.setCellValueFactory(cellData -> cellData.getValue().productPriceProperty());
 
         mainPartsSearch.setDisable(true);
         
@@ -249,7 +270,7 @@ public class MainScreenController implements Initializable {
         });
         searchPartField.textProperty().addListener(partListener);
         partsTable.setItems(filteredParts);
-
+        productsTable.setItems(Inventory.getProducts());
     }    
     
 }
