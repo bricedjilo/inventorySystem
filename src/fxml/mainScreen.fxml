@@ -168,7 +168,7 @@
                   <Insets />
                </GridPane.margin>
             </TableView>
-            <Button fx:id="mainProductsDelete" alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Delete" GridPane.columnIndex="28" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="mainProductsDelete" onAction="#handleDeleteProduct"  alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Delete" GridPane.columnIndex="28" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                </padding>
