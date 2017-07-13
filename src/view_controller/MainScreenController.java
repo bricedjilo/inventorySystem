@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -28,6 +29,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Inventory;
 import model.Part;
@@ -82,6 +84,9 @@ public class MainScreenController implements Initializable {
     @FXML 
     private TextField searchPartField;
     
+    @FXML
+    private Text errorMainScreenField;
+    
     @FXML 
     private CheckBox disableAutoSearchBox;
     
@@ -116,6 +121,7 @@ public class MainScreenController implements Initializable {
     private TableColumn<Product, Number> productPriceColumn;
     
     private ChangeListener<String> partListener;
+    private Scene scene;
 
     
     //------------- Part Actions ----------------//
@@ -188,7 +194,7 @@ public class MainScreenController implements Initializable {
     }
     
     @FXML
-    private void handleDeletePart() {
+    private void handleDeletePart(ActionEvent event) {
         Part partToBeDeleted = partsTable.getSelectionModel().getSelectedItem();
         if(partToBeDeleted != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -197,8 +203,9 @@ public class MainScreenController implements Initializable {
             alert.setContentText("Are you ok with this?");
 
             Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Inventory.deletePart(partToBeDeleted);
+            if (result.get() == ButtonType.OK && !Inventory.deletePart(partToBeDeleted)){
+                errorMainScreenField.setText("Error: Unable to delete part - " + 
+                    partToBeDeleted.getPartName());
             } 
         }
     }
