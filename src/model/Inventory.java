@@ -14,8 +14,8 @@ import javafx.collections.ObservableList;
  */
 public class Inventory {
     
-    private static ObservableList products = observableArrayList();
-    private static ObservableList allParts = observableArrayList();
+    private static ObservableList<Product> products = observableArrayList();
+    private static ObservableList<Part> allParts = observableArrayList();
     private static OutsourcedPart previousOutsourcedPart;
     private static InhousePart previousInhousePart;
     private static Part lastPartUpdated;
@@ -32,12 +32,21 @@ public class Inventory {
         Inventory.products.add(product);
     }
     
-    public boolean removeProduct(int productID ) {
+    public static boolean removeProduct(int index) {
+        if(index < products.size()) {
+            return Inventory.products.remove(products.get(index));
+        }
         return false;
     }
     
-    public Product lookupProduct(int productID) {
-        return null;
+    public static Product lookupProduct(int productID) {
+        Product result = null;
+        for(Product product : products) {
+            if(product.getProductID() == productID) {
+                result = product;
+            }
+        }
+        return result;
     }
     
     public void updateProduct(int productID) {
@@ -48,13 +57,12 @@ public class Inventory {
         Inventory.allParts.add(part);
     }
     
-    public boolean deletePart(Part part) {
+    public static boolean deletePart(Part part) {
         return Inventory.allParts.remove(part);
     }
     
     public Part lookupPart(int partID) {
         ObservableList<Part> parts = Inventory.allParts;
-//        for
         return null;
     }
     
