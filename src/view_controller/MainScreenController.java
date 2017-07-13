@@ -35,6 +35,7 @@ import model.Inventory;
 import model.Part;
 import model.Product;
 import util.SceneUtil;
+import validation.ItemRemovalException;
 
 /**
  * FXML Controller class
@@ -240,18 +241,24 @@ public class MainScreenController implements Initializable {
     
     @FXML
     private void handleDeleteProduct(ActionEvent event) {
-    int productToBeDeleted = productsTable.getSelectionModel().getSelectedIndex();
-        if(productToBeDeleted >= 0) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setHeaderText("You are about to delete a part: " + 
-                productsTable.getSelectionModel().getSelectedItem());
-            alert.setContentText("Are you ok with this?");
+        try {
+            int productToBeDeleted = productsTable.getSelectionModel().getSelectedIndex();
+            if(productToBeDeleted >= 0) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("You are about to delete a part: " + 
+                    productsTable.getSelectionModel().getSelectedItem());
+                alert.setContentText("Are you ok with this?");
 
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Inventory.removeProduct(productToBeDeleted);
-            } 
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    Inventory.removeProduct(productToBeDeleted);
+                } 
+            }
+        } catch (ItemRemovalException irex) {
+            errorMainScreenField.setText(irex.getMessage());
+        } catch (Exception ex) {
+            errorMainScreenField.setText(ex.getMessage());
         }
     }
     

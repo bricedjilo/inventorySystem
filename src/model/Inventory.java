@@ -5,8 +5,9 @@
  */
 package model;
 
-import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
+import validation.ItemRemovalException;
+import static javafx.collections.FXCollections.observableArrayList;
 
 /**
  *
@@ -32,11 +33,13 @@ public class Inventory {
         Inventory.products.add(product);
     }
     
-    public static boolean removeProduct(int index) {
-        if(index < products.size()) {
-            return Inventory.products.remove(products.get(index));
+    public static boolean removeProduct(int index) throws ItemRemovalException {
+        Product product = Inventory.products.get(index);
+        if(product.getAssociatedParts().size() > 0) {
+            throw new ItemRemovalException(
+                "Product contains parts. Parts should be removed before product removal.");
         }
-        return false;
+        return Inventory.products.remove(products.get(index));
     }
     
     public static Product lookupProduct(int productID) {
