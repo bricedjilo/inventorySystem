@@ -44,6 +44,7 @@ public class Inventory {
         for(Product product : products) {
             if(product.getProductID() == productID) {
                 result = product;
+                break;
             }
         }
         return result;
@@ -58,12 +59,21 @@ public class Inventory {
     }
     
     public static boolean deletePart(Part part) {
-        return Inventory.allParts.remove(part);
+        if(part != null) {
+            return Inventory.allParts.remove(part);
+        }
+        return false;
     }
     
     public Part lookupPart(int partID) {
-        ObservableList<Part> parts = Inventory.allParts;
-        return null;
+        Part result = null;
+        for(Part part : allParts) {
+            if(part.getPartID()== partID) {
+                result = part;
+                break;
+            }
+        }
+        return result;
     }
     
     public static void updatePart(int index) {
