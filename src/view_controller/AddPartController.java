@@ -5,6 +5,7 @@
  */
 package view_controller;
 
+import inventorysystem_bricedjilo.InventoryService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -42,8 +43,6 @@ public class AddPartController implements Initializable {
 
     private Stage stage;
     private Scene scene;
-    
-    private int id = 4;
     
     @FXML
     private ResourceBundle resources;
@@ -149,7 +148,7 @@ public class AddPartController implements Initializable {
                 Validate.isPositiveInt(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
                 Inventory.setPreviousInhousePart(new InhousePart(
-                    Integer.parseInt(machineIdCompNameField.getText()), (id+1), 
+                    Integer.parseInt(machineIdCompNameField.getText()), InventoryService.getNextPartID(), 
                     nameField.getText(), Double.parseDouble(priceCostField.getText()), 
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
@@ -159,7 +158,8 @@ public class AddPartController implements Initializable {
             } else {
                 Validate.isAlphaNumeric(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
-                Inventory.setPreviousOutsourcedPart(new OutsourcedPart(machineIdCompNameField.getText(), (id+1), 
+                Inventory.setPreviousOutsourcedPart(new OutsourcedPart(
+                    machineIdCompNameField.getText(), InventoryService.getNextPartID(), 
                     nameField.getText(), Double.parseDouble(priceCostField.getText()), 
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
