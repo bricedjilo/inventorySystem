@@ -168,7 +168,7 @@
                   <Insets />
                </GridPane.margin>
             </TableView>
-            <Button fx:id="mainProductsDelete" alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="85.0" text="Delete" GridPane.columnIndex="28" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="mainProductsDelete" alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleDeleteProduct" prefHeight="27.0" prefWidth="85.0" text="Delete" GridPane.columnIndex="28" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <padding>
                   <Insets bottom="10.0" left="25.0" right="25.0" top="10.0" />
                </padding>
@@ -195,5 +195,10 @@
             </Button>
          </children>
       </GridPane>
+      <Text fx:id="errorMainScreenField" fill="#c61b1b" layoutX="555.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="512.0000061993487">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
