@@ -5,6 +5,7 @@
  */
 package view_controller;
 
+import inventorysystem_bricedjilo.InventoryService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -115,8 +116,6 @@ public class AddProductController implements Initializable {
     private Text errorSaveProductField;
     
     private Stage stage;
-    
-    private int productId = 1;
     
     private ObservableList<Part> addedParts = FXCollections.observableArrayList();
     private Scene scene;
@@ -255,20 +254,14 @@ public class AddProductController implements Initializable {
             errorSaveProductField.setText("");
             
             Inventory.addProduct(new Product(
-                addedParts, productId, productNameField.getText(), 
+                addedParts, InventoryService.getNextProductID(), productNameField.getText(), 
                 Double.parseDouble(productPriceField.getText()), 
                 Integer.parseInt(productInStockField.getText()), 
                 Integer.parseInt(productMinField.getText()), 
                 Integer.parseInt(productMinField.getText()))
             );
-            
-            System.out.println("I am here 1");
-            
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
-            stage.show();
-            
-            System.out.println("I am here 2");
-            
+            stage.show();            
         } catch (IOException io) {
             errorSaveProductField.setText(io.getMessage());
         } catch (PatternSyntaxException patEx) {
