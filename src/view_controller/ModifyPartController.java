@@ -137,9 +137,7 @@ public class ModifyPartController implements Initializable {
         nameField.setText(outsource.getPartName());     
         machineIdCompNameField.setText(outsource.getCompanyName());
     }
-    
-    
-    
+
     @FXML
     private void handleModifyPartSave(ActionEvent event) throws IOException {
         scene = ((Node) event.getSource()).getScene();
@@ -171,10 +169,9 @@ public class ModifyPartController implements Initializable {
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
                 ));
-            
-                Inventory.setIndexToBeUpdated(Inventory.getPreviousInhousePartIndex());
                 Inventory.setLastPartUpdated(Inventory.getPreviousInhousePart());
-                Inventory.updatePart(Inventory.getIndexToBeUpdated()); 
+                Inventory.updatePart(Inventory.getPreviousInhousePart().getPartID());         
+               
             } else {
                 Validate.isAlphaNumeric(machineIdCompNameField.getText().trim(), "Company Name", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
@@ -184,9 +181,9 @@ public class ModifyPartController implements Initializable {
                     Integer.parseInt(invField.getText()), Integer.parseInt(minField.getText()), 
                     Integer.parseInt(maxField.getText())
                 ));
-                Inventory.setIndexToBeUpdated(Inventory.getPreviousOutsourcedPartIndex());
                 Inventory.setLastPartUpdated(Inventory.getPreviousOutsourcedPart());
-                Inventory.updatePart(Inventory.getIndexToBeUpdated());
+                Inventory.updatePart(Inventory.getPreviousOutsourcedPart().getPartID());
+
             }
             this.setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();
@@ -209,7 +206,6 @@ public class ModifyPartController implements Initializable {
         }
     }
 
-    
     /**
      * Initializes the controller class.
      */
