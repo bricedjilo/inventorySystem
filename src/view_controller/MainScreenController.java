@@ -125,6 +125,20 @@ public class MainScreenController implements Initializable {
     private Scene scene;
 
     
+    //----------------- Exit --------------------//
+    @FXML
+    private void handleMainExit(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("You are about to quit the application.");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
+        } 
+    } 
+    
     //------------- Part Actions ----------------//
     @FXML
     private void handleMainAddPartsAction(ActionEvent event) {
@@ -211,11 +225,6 @@ public class MainScreenController implements Initializable {
         }
     }
     
-    @FXML
-    private void handleMainExit(ActionEvent event) {
-        ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
-    }
-    
     
     //------------- Product Actions ----------------//
     
@@ -252,10 +261,7 @@ public class MainScreenController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
-//                    System.out.println("==== Before: " + Inventory.getProducts().size());
                     Inventory.removeProduct(productToBeDeleted);
-//                    productsTable.getItems().remove(productToBeDeleted);
-//                    System.out.println("===== after: " + Inventory.getProducts().size());
                 } 
             }
             if(productsTable.getItems().isEmpty()) {
