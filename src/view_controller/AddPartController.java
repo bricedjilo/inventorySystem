@@ -154,7 +154,7 @@ public class AddPartController implements Initializable {
                     Integer.parseInt(maxField.getText())
                 ));
                 Inventory.addPart(Inventory.getPreviousInhousePart());
-                Inventory.setPreviousInhousePartIndex(Inventory.getAllParts().size()-1);
+//                Inventory.setPreviousInhousePartIndex(Inventory.getAllParts().size()-1);
             } else {
                 Validate.isAlphaNumeric(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
@@ -165,7 +165,7 @@ public class AddPartController implements Initializable {
                     Integer.parseInt(maxField.getText())
                 ));
                 Inventory.addPart(Inventory.getPreviousOutsourcedPart());
-                Inventory.setPreviousOutsourcedPartIndex(Inventory.getAllParts().size()-1);
+//                Inventory.setPreviousOutsourcedPartIndex(Inventory.getAllParts().size()-1);
             }
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();
