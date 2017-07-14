@@ -86,6 +86,9 @@ public class MainScreenController implements Initializable {
     private TextField searchPartField;
     
     @FXML
+    private TextField searchProductField;
+    
+    @FXML
     private Text errorMainScreenField;
     
     @FXML 
@@ -229,6 +232,25 @@ public class MainScreenController implements Initializable {
     //------------- Product Actions ----------------//
     
     @FXML
+    private void handleProductSearch(ActionEvent event) {
+        FilteredList<Product> products = new FilteredList<>(Inventory.getProducts(), pre -> true);
+        String query = searchProductField.getText();
+        
+        products.setPredicate(product -> {
+            if (query == null || query.isEmpty()) {
+                return true;
+            }
+            return (product.getProductName().toLowerCase().contains(query) || 
+                String.valueOf(product.getProductInStock()).contains(query) || 
+                String.valueOf(product.getProductID()).contains(query) ||
+                String.valueOf(product.getProductPrice()).contains(query));
+            
+            
+        });
+        productsTable.setItems(products);
+    }
+    
+    @FXML
     private void handleAddProduct (ActionEvent event) {
         try {
             stage = (new SceneUtil()).changeScene(event, "/fxml/addProduct.fxml");
@@ -279,8 +301,8 @@ public class MainScreenController implements Initializable {
             errorMainScreenField.setText(ex.getMessage());
         }
     }
+
     
-    public MainScreenController() { }
     
     /**
      * Initializes the controller class.
