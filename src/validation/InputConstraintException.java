@@ -14,5 +14,4 @@ public class InputConstraintException extends RuntimeException {
     public InputConstraintException(String message) { //, String input2, String message) {
         super(message);
     }
-
 }

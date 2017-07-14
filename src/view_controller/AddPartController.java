@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.PatternSyntaxException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,7 +110,6 @@ public class AddPartController implements Initializable {
     
     @FXML
     private void handleInHouse(ActionEvent event) {
-//        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         machineIdCompNameLabel.setText("Machine ID");
         machineIdCompNameField.setPromptText("Machine ID");
     }
@@ -154,7 +151,6 @@ public class AddPartController implements Initializable {
                     Integer.parseInt(maxField.getText())
                 ));
                 Inventory.addPart(Inventory.getPreviousInhousePart());
-//                Inventory.setPreviousInhousePartIndex(Inventory.getAllParts().size()-1);
             } else {
                 Validate.isAlphaNumeric(machineIdCompNameField.getText().trim(), "Machine ID", "machineIdCompNameField");
                 machineIdCompNameField.setStyle("-fx-border-color: green;");
@@ -165,7 +161,6 @@ public class AddPartController implements Initializable {
                     Integer.parseInt(maxField.getText())
                 ));
                 Inventory.addPart(Inventory.getPreviousOutsourcedPart());
-//                Inventory.setPreviousOutsourcedPartIndex(Inventory.getAllParts().size()-1);
             }
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();
@@ -192,7 +187,6 @@ public class AddPartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }
