@@ -29,6 +29,4 @@ public class SceneUtil {
         stage.setScene(parentScene);
         return stage;
     }
-    
-    
 }

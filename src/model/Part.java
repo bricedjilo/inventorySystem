@@ -120,5 +120,4 @@ public abstract class Part {
                 ", \nPrice = " + getPrice() + ", Inventory Level = " + getInStock() + 
                 ", \nMin = " + getMin() + ", Max = " + getMax() + " }";
     }
-    
 }

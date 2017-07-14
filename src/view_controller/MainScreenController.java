@@ -9,11 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
@@ -302,8 +297,6 @@ public class MainScreenController implements Initializable {
         }
     }
 
-    
-    
     /**
      * Initializes the controller class.
      */
@@ -350,6 +343,5 @@ public class MainScreenController implements Initializable {
             mainProductsDelete.setDisable(false);
             mainProductsSearch.setDisable(false);
         }
-    }    
-    
+    }   
 }
