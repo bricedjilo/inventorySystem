@@ -135,4 +135,13 @@ public class Product {
         });
         return (parts.size() > 0)? parts.get(0) : null;
     }
+
+    @Override
+    public String toString() {
+        return "Product { productID=" + productID + ", productName=" + productName + 
+            ", \nproductPrice=" + productPrice + ", productInStock=" + productInStock + 
+            ", \nmin=" + min + ", max=" + max + " }";
+    }
+    
+    
 }
