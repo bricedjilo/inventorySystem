@@ -20,9 +20,10 @@ public class Inventory {
     private static OutsourcedPart previousOutsourcedPart;
     private static InhousePart previousInhousePart;
     private static Part lastPartUpdated;
+    private static Product lastProductAdded;
     private static int indexToBeUpdated;
-    private static int previousOutsourcedPartIndex;
-    private static int previousInhousePartIndex;
+//    private static int previousOutsourcedPartIndex;
+//    private static int previousInhousePartIndex;
     
     
     public Inventory() {
@@ -53,8 +54,18 @@ public class Inventory {
         return result;
     }
     
-    public void updateProduct(int productID) {
-        
+    public static void updateProduct(int productID) {
+        int size = Inventory.products.size();
+        int i = 0;
+        for(; i < size; i++) {
+            if(Inventory.products.get(i).getProductID()== productID) {
+                Inventory.products.set(i, Inventory.lastProductAdded);
+                break;
+            }
+        }
+        if(size == i) {
+            Inventory.products.add(lastProductAdded);
+        }
     }
     
     public static void addPart(Part part) {
@@ -79,8 +90,18 @@ public class Inventory {
         return result;
     }
     
-    public static void updatePart(int index) {
-        Inventory.allParts.set(index, Inventory.lastPartUpdated);
+    public static void updatePart(int partID) {
+        int i = 0;
+        int size = Inventory.allParts.size();
+        for(; i < size; i++) {
+            if(Inventory.allParts.get(i).getPartID() == partID) {
+                Inventory.allParts.set(i, Inventory.lastPartUpdated);
+                break;
+            }
+        }
+        if(size == i) {
+            Inventory.allParts.add(lastPartUpdated);
+        }
     }
     
     public static ObservableList getProducts() {
@@ -91,21 +112,21 @@ public class Inventory {
         return Inventory.allParts;
     }
 
-    public static int getPreviousOutsourcedPartIndex() {
-        return previousOutsourcedPartIndex;
-    }
-
-    public static void setPreviousOutsourcedPartIndex(int previousOutsourcedPartIndex) {
-        Inventory.previousOutsourcedPartIndex = previousOutsourcedPartIndex;
-    }
-
-    public static int getPreviousInhousePartIndex() {
-        return previousInhousePartIndex;
-    }
-
-    public static void setPreviousInhousePartIndex(int previousInhousePartIndex) {
-        Inventory.previousInhousePartIndex = previousInhousePartIndex;
-    }
+//    public static int getPreviousOutsourcedPartIndex() {
+//        return previousOutsourcedPartIndex;
+//    }
+//
+//    public static void setPreviousOutsourcedPartIndex(int previousOutsourcedPartIndex) {
+//        Inventory.previousOutsourcedPartIndex = previousOutsourcedPartIndex;
+//    }
+//
+//    public static int getPreviousInhousePartIndex() {
+//        return previousInhousePartIndex;
+//    }
+//
+//    public static void setPreviousInhousePartIndex(int previousInhousePartIndex) {
+//        Inventory.previousInhousePartIndex = previousInhousePartIndex;
+//    }
     
     public static OutsourcedPart getPreviousOutsourcedPart() {
         return previousOutsourcedPart;
@@ -137,6 +158,14 @@ public class Inventory {
 
     public static void setPreviousInhousePart(InhousePart previousInhousePart) {
         Inventory.previousInhousePart = previousInhousePart;
+    }
+
+    public static Product getLastProductAdded() {
+        return lastProductAdded;
+    }
+
+    public static void setLastProductAdded(Product lastProductAdded) {
+        Inventory.lastProductAdded = lastProductAdded;
     }
     
     

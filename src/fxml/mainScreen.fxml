@@ -152,7 +152,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="203.0" GridPane.columnIndex="28" GridPane.halignment="RIGHT">
+            <TextField fx:id="searchProductField" maxWidth="1.7976931348623157E308" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" onAction="#handleProductSearch" prefHeight="35.0" prefWidth="203.0" GridPane.columnIndex="28" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -188,7 +188,7 @@
                   <Font size="19.0" />
                </font>
             </Text>
-            <Button fx:id="mainProductsSearch" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" text="Search" GridPane.columnIndex="11">
+            <Button fx:id="mainProductsSearch" alignment="BOTTOM_CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleProductSearch" prefHeight="35.0" prefWidth="86.0" text="Search" GridPane.columnIndex="11">
                <padding>
                   <Insets bottom="8.0" left="25.0" right="25.0" top="8.0" />
                </padding>

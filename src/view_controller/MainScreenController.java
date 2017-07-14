@@ -86,6 +86,9 @@ public class MainScreenController implements Initializable {
     private TextField searchPartField;
     
     @FXML
+    private TextField searchProductField;
+    
+    @FXML
     private Text errorMainScreenField;
     
     @FXML 
@@ -124,6 +127,20 @@ public class MainScreenController implements Initializable {
     private ChangeListener<String> partListener;
     private Scene scene;
 
+    
+    //----------------- Exit --------------------//
+    @FXML
+    private void handleMainExit(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("You are about to quit the application.");
+        alert.setContentText("Are you ok with this?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
+        } 
+    } 
     
     //------------- Part Actions ----------------//
     @FXML
@@ -211,13 +228,27 @@ public class MainScreenController implements Initializable {
         }
     }
     
-    @FXML
-    private void handleMainExit(ActionEvent event) {
-        ((Stage)((Node) event.getSource()).getScene().getWindow()).close();
-    }
-    
     
     //------------- Product Actions ----------------//
+    
+    @FXML
+    private void handleProductSearch(ActionEvent event) {
+        FilteredList<Product> products = new FilteredList<>(Inventory.getProducts(), pre -> true);
+        String query = searchProductField.getText();
+        
+        products.setPredicate(product -> {
+            if (query == null || query.isEmpty()) {
+                return true;
+            }
+            return (product.getProductName().toLowerCase().contains(query) || 
+                String.valueOf(product.getProductInStock()).contains(query) || 
+                String.valueOf(product.getProductID()).contains(query) ||
+                String.valueOf(product.getProductPrice()).contains(query));
+            
+            
+        });
+        productsTable.setItems(products);
+    }
     
     @FXML
     private void handleAddProduct (ActionEvent event) {
@@ -255,14 +286,23 @@ public class MainScreenController implements Initializable {
                     Inventory.removeProduct(productToBeDeleted);
                 } 
             }
+            if(productsTable.getItems().isEmpty()) {
+                mainProductsModify.setDisable(true);
+                mainProductsDelete.setDisable(true);
+                mainProductsSearch.setDisable(true);
+            } else {
+                mainProductsModify.setDisable(false);
+                mainProductsDelete.setDisable(false);
+                mainProductsSearch.setDisable(false);
+            }
         } catch (ItemRemovalException irex) {
             errorMainScreenField.setText(irex.getMessage());
         } catch (Exception ex) {
             errorMainScreenField.setText(ex.getMessage());
         }
     }
+
     
-    public MainScreenController() { }
     
     /**
      * Initializes the controller class.
@@ -300,6 +340,16 @@ public class MainScreenController implements Initializable {
         searchPartField.textProperty().addListener(partListener);
         partsTable.setItems(filteredParts);
         productsTable.setItems(Inventory.getProducts());
+        
+        if(productsTable.getItems().isEmpty()) {
+            mainProductsModify.setDisable(true);
+            mainProductsDelete.setDisable(true);
+            mainProductsSearch.setDisable(true);
+        } else {
+            mainProductsModify.setDisable(false);
+            mainProductsDelete.setDisable(false);
+            mainProductsSearch.setDisable(false);
+        }
     }    
     
 }

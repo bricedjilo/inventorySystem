@@ -222,11 +222,9 @@ public class ModifyProductController implements Initializable {
                 addedParts.remove(partToBeDeleted);
             } 
             if(addedParts.size() > 0) {
-            deletePartButton.setDisable(false);
-            saveNewProductButton.setDisable(false);
+                deletePartButton.setDisable(false);
             } else {
                 deletePartButton.setDisable(true);
-                saveNewProductButton.setDisable(true);
             }
         }
     }
@@ -259,13 +257,14 @@ public class ModifyProductController implements Initializable {
             
             errorSaveProductField.setText("");
             
-            Inventory.addProduct(new Product(
-                addedParts, InventoryService.getNextProductID(), productNameField.getText(), 
+            Inventory.setLastProductAdded(new Product(
+                addedParts, Integer.parseInt(productIdField.getText()), productNameField.getText(), 
                 Double.parseDouble(productPriceField.getText()), 
                 Integer.parseInt(productInStockField.getText()), 
                 Integer.parseInt(productMinField.getText()), 
-                Integer.parseInt(productMinField.getText()))
+                Integer.parseInt(productMaxField.getText()))
             );
+            Inventory.updateProduct(Inventory.getLastProductAdded().getProductID());
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();            
         } catch (IOException io) {
@@ -309,10 +308,22 @@ public class ModifyProductController implements Initializable {
         
         // Disable Add, Delete, and Save if the product has not been created
         addPartToProductButton.setDisable(true);
-        saveNewProductButton.setDisable(true);
-        deletePartButton.setDisable(true);
+//        saveNewProductButton.setDisable(true);
+//        deletePartButton.setDisable(true);
+        
+        Product product = Inventory.getLastProductAdded();
+        if(product != null) {
+            productIdField.setText(String.valueOf(product.getProductID()));
+            productNameField.setText(product.getProductName());
+            productInStockField.setText(String.valueOf(product.getProductInStock()));
+            productPriceField.setText(String.valueOf(product.getProductPrice()));
+            productMaxField.setText(String.valueOf(product.getMax()));
+            productMinField.setText(String.valueOf(product.getMin()));
+            
+            addedParts = product.getAssociatedParts();
+            productPartsTable.setItems(product.getAssociatedParts());
+        }
     }    
-
     
     
 }
