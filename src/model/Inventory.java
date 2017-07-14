@@ -54,8 +54,18 @@ public class Inventory {
         return result;
     }
     
-    public void updateProduct(int productID) {
-        
+    public static void updateProduct(int productID) {
+        int size = Inventory.products.size();
+        int i = 0;
+        for(; i < size; i++) {
+            if(Inventory.products.get(i).getProductID()== productID) {
+                Inventory.products.set(i, Inventory.lastProductAdded);
+                break;
+            }
+        }
+        if(size == i) {
+            Inventory.products.add(lastProductAdded);
+        }
     }
     
     public static void addPart(Part part) {
@@ -80,8 +90,18 @@ public class Inventory {
         return result;
     }
     
-    public static void updatePart(int index) {
-        Inventory.allParts.set(index, Inventory.lastPartUpdated);
+    public static void updatePart(int partID) {
+        int i = 0;
+        int size = Inventory.allParts.size();
+        for(; i < size; i++) {
+            if(Inventory.allParts.get(i).getPartID() == partID) {
+                Inventory.allParts.set(i, Inventory.lastPartUpdated);
+                break;
+            }
+        }
+        if(size == i) {
+            Inventory.allParts.add(lastPartUpdated);
+        }
     }
     
     public static ObservableList getProducts() {

@@ -258,13 +258,13 @@ public class ModifyProductController implements Initializable {
             errorSaveProductField.setText("");
             
             Inventory.setLastProductAdded(new Product(
-                addedParts, InventoryService.getNextProductID(), productNameField.getText(), 
+                addedParts, Integer.parseInt(productIdField.getText()), productNameField.getText(), 
                 Double.parseDouble(productPriceField.getText()), 
                 Integer.parseInt(productInStockField.getText()), 
                 Integer.parseInt(productMinField.getText()), 
-                Integer.parseInt(productMinField.getText()))
+                Integer.parseInt(productMaxField.getText()))
             );
-            Inventory.addProduct(Inventory.getLastProductAdded());
+            Inventory.updateProduct(Inventory.getLastProductAdded().getProductID());
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();            
         } catch (IOException io) {
