@@ -252,8 +252,20 @@ public class MainScreenController implements Initializable {
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.get() == ButtonType.OK){
+//                    System.out.println("==== Before: " + Inventory.getProducts().size());
                     Inventory.removeProduct(productToBeDeleted);
+//                    productsTable.getItems().remove(productToBeDeleted);
+//                    System.out.println("===== after: " + Inventory.getProducts().size());
                 } 
+            }
+            if(productsTable.getItems().isEmpty()) {
+                mainProductsModify.setDisable(true);
+                mainProductsDelete.setDisable(true);
+                mainProductsSearch.setDisable(true);
+            } else {
+                mainProductsModify.setDisable(false);
+                mainProductsDelete.setDisable(false);
+                mainProductsSearch.setDisable(false);
             }
         } catch (ItemRemovalException irex) {
             errorMainScreenField.setText(irex.getMessage());
@@ -300,6 +312,16 @@ public class MainScreenController implements Initializable {
         searchPartField.textProperty().addListener(partListener);
         partsTable.setItems(filteredParts);
         productsTable.setItems(Inventory.getProducts());
+        
+        if(productsTable.getItems().isEmpty()) {
+            mainProductsModify.setDisable(true);
+            mainProductsDelete.setDisable(true);
+            mainProductsSearch.setDisable(true);
+        } else {
+            mainProductsModify.setDisable(false);
+            mainProductsDelete.setDisable(false);
+            mainProductsSearch.setDisable(false);
+        }
     }    
     
 }

@@ -105,7 +105,7 @@
             <TextField fx:id="productInStockField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Inv" GridPane.columnIndex="3" GridPane.rowIndex="9" />
             <TextField fx:id="productPriceField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="192.0" promptText="Price" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="11" />
             <TextField fx:id="productMaxField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Max" style="-fx-font-style: italic;" GridPane.columnIndex="3" GridPane.rowIndex="13" />
-            <TextField fx:id="productMinField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleCancelProductAdd" prefHeight="35.0" prefWidth="56.0" promptText="Min" style="-fx-font-style: italic;" GridPane.columnIndex="8" GridPane.rowIndex="13" />
+            <TextField fx:id="productMinField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="56.0" promptText="Min" style="-fx-font-style: italic;" GridPane.columnIndex="8" GridPane.rowIndex="13" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Min" GridPane.columnIndex="6" GridPane.rowIndex="13">
                <font>
                   <Font size="15.0" />
