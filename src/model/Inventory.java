@@ -22,8 +22,6 @@ public class Inventory {
     private static Part lastPartUpdated;
     private static Product lastProductAdded;
     private static int indexToBeUpdated;
-//    private static int previousOutsourcedPartIndex;
-//    private static int previousInhousePartIndex;
     
     
     public Inventory() {
@@ -111,22 +109,6 @@ public class Inventory {
     public static ObservableList getAllParts() {
         return Inventory.allParts;
     }
-
-//    public static int getPreviousOutsourcedPartIndex() {
-//        return previousOutsourcedPartIndex;
-//    }
-//
-//    public static void setPreviousOutsourcedPartIndex(int previousOutsourcedPartIndex) {
-//        Inventory.previousOutsourcedPartIndex = previousOutsourcedPartIndex;
-//    }
-//
-//    public static int getPreviousInhousePartIndex() {
-//        return previousInhousePartIndex;
-//    }
-//
-//    public static void setPreviousInhousePartIndex(int previousInhousePartIndex) {
-//        Inventory.previousInhousePartIndex = previousInhousePartIndex;
-//    }
     
     public static OutsourcedPart getPreviousOutsourcedPart() {
         return previousOutsourcedPart;
@@ -167,6 +149,4 @@ public class Inventory {
     public static void setLastProductAdded(Product lastProductAdded) {
         Inventory.lastProductAdded = lastProductAdded;
     }
-    
-    
 }

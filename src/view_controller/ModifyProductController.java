@@ -1,11 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * 
  */
 package view_controller;
 
-import inventorysystem_bricedjilo.InventoryService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -127,7 +124,6 @@ public class ModifyProductController implements Initializable {
     private Scene scene;
 
     
-    
     public Stage getStage() {
         return stage;
     }
@@ -143,7 +139,6 @@ public class ModifyProductController implements Initializable {
     public void setScene(Scene scene) {
         this.scene = scene;
     }
-    
     
     @FXML
     private void handleCancelProductAdd(ActionEvent event) {
@@ -304,12 +299,8 @@ public class ModifyProductController implements Initializable {
         addedPartIdColumn.setCellValueFactory(cellData -> cellData.getValue().partIdProperty());
         addedInvLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         addedPriceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-              
-        
-        // Disable Add, Delete, and Save if the product has not been created
+
         addPartToProductButton.setDisable(true);
-//        saveNewProductButton.setDisable(true);
-//        deletePartButton.setDisable(true);
         
         Product product = Inventory.getLastProductAdded();
         if(product != null) {
@@ -324,6 +315,4 @@ public class ModifyProductController implements Initializable {
             productPartsTable.setItems(product.getAssociatedParts());
         }
     }    
-    
-    
 }

@@ -37,7 +37,4 @@ public class InhousePart extends Part {
     public String toString() {
         return "Inhouse Part {" + "\nMachine ID = " + getMachineID() + super.toString();
     }
-    
-    
-    
 }

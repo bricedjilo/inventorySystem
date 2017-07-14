@@ -61,25 +61,5 @@ public class Validate {
                     " - " + fieldID1 + " - " + fieldID2);
         }
         return true;
-    }
-    
-//    public static boolean checkInputConstraint(
-//            String min, String max, String inv,
-//            ) {
-//        int minVal = Integer.parseInt(min);
-//        int maxVal = Integer.parseInt(max);
-//        int invVal = Integer.parseInt(inv);
-//        
-//        if(invVal > maxVal) {
-//           throw new InputConstraintException("Inventory must be less than Max value.");
-//        } 
-//        if(invVal < minVal) {
-//            throw new InputConstraintException("Inventory must be greater than Min value.");
-//        }
-//        if(minVal > maxVal) {
-//            throw new InputConstraintException("Min value must be less than Max value.");
-//        }
-//        return true;
-//    }
-    
+    }    
 }
