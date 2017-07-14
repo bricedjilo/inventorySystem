@@ -20,6 +20,7 @@ public class Inventory {
     private static OutsourcedPart previousOutsourcedPart;
     private static InhousePart previousInhousePart;
     private static Part lastPartUpdated;
+    private static Product lastProductAdded;
     private static int indexToBeUpdated;
     private static int previousOutsourcedPartIndex;
     private static int previousInhousePartIndex;
@@ -137,6 +138,14 @@ public class Inventory {
 
     public static void setPreviousInhousePart(InhousePart previousInhousePart) {
         Inventory.previousInhousePart = previousInhousePart;
+    }
+
+    public static Product getLastProductAdded() {
+        return lastProductAdded;
+    }
+
+    public static void setLastProductAdded(Product lastProductAdded) {
+        Inventory.lastProductAdded = lastProductAdded;
     }
     
     

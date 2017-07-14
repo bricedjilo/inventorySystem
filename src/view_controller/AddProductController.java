@@ -253,13 +253,14 @@ public class AddProductController implements Initializable {
             
             errorSaveProductField.setText("");
             
-            Inventory.addProduct(new Product(
+            Inventory.setLastProductAdded(new Product(
                 addedParts, InventoryService.getNextProductID(), productNameField.getText(), 
                 Double.parseDouble(productPriceField.getText()), 
                 Integer.parseInt(productInStockField.getText()), 
                 Integer.parseInt(productMinField.getText()), 
-                Integer.parseInt(productMinField.getText()))
+                Integer.parseInt(productMaxField.getText()))
             );
+            Inventory.addProduct(Inventory.getLastProductAdded());
             setStage((new SceneUtil()).changeScene(event, "/fxml/mainScreen.fxml"));
             stage.show();            
         } catch (IOException io) {
@@ -300,11 +301,12 @@ public class AddProductController implements Initializable {
         addedInvLevelColumn.setCellValueFactory(cellData -> cellData.getValue().instockProperty());
         addedPriceCostColumn.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
               
-        
         // Disable Add, Delete, and Save if the product has not been created
         addPartToProductButton.setDisable(true);
         saveNewProductButton.setDisable(true);
         deletePartButton.setDisable(true);
+        
+        
     }    
 
     
